@@ -1,0 +1,175 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/humans/pedestrian/protos/Pedestrian.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.03315686286965384 -0.043660277798637744 0.9984960703914606 4.531695925806337
+  position 4.379122997551575 5.029236902784141 0.8885024419801013
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 10 10
+}
+Robot {
+  translation 4.39731 -0.0040104 0.0145495
+  rotation -0.012857908986711873 0.012575915423169801 -0.9998382471818922 1.5708503600400527
+  children [
+    Transform {
+      translation 0 3.67276e-06 0.61
+      rotation 1 0 0 1.5707903061004251
+      scale 0.1 0.1 0.08
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+            }
+            texture ImageTexture {
+              url [
+                "../../../../Pictures/photo_2024-02-07_13-24-17.jpg"
+              ]
+            }
+          }
+          geometry Mesh {
+            url [
+              "../../../../Pictures/Atom Plus/sinebot/sinebot.obj"
+            ]
+          }
+        }
+      ]
+    }
+    Camera {
+      translation -3.33438e-07 8.35079e-09 0.66
+      rotation -6.40013e-07 -8.50357e-08 -1 1.57081
+      fieldOfView 2
+      width 320
+      height 240
+    }
+    DEF front Solid {
+      translation 0 -0.2 -0.01
+      children [
+        DEF wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0.878431 0.105882 0.141176
+            roughness 1
+            metalness 0
+          }
+          geometry Sphere {
+            radius 0.025
+          }
+        }
+      ]
+      name "solid(3)"
+      boundingObject USE wheel
+      physics Physics {
+      }
+    }
+    DEF join Solid {
+      translation 0 -0.11 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 1 0
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.15 0.2 0.01
+          }
+        }
+      ]
+      name "solid(2)"
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 218.5470039152486
+      }
+      device [
+        RotationalMotor {
+          name "left_motor"
+        }
+      ]
+      endPoint Solid {
+        translation 0.0899999980609028 -2.7336052968868737e-06 -6.76936861921914e-07
+        rotation -0.5333592687061168 0.656547137348598 -0.5333608037010572 1.9796717621500117
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0.878431 0.105882 0.141176
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.03
+            }
+          }
+          USE wheel
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 316.71946714391396
+      }
+      device [
+        RotationalMotor {
+          name "right_motor"
+        }
+      ]
+      endPoint Solid {
+        translation -0.09002029912084879 1.4032703510354004e-05 3.920296595728002e-05
+        rotation -0.7048029972735163 0.07455771037726515 -0.7054742255090314 2.994131778685273
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0.878431 0.105882 0.141176
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.03
+            }
+          }
+        ]
+        boundingObject USE wheel
+        physics Physics {
+        }
+      }
+    }
+    Pose {
+      children [
+        DEF body Shape {
+          appearance PBRAppearance {
+            baseColor 1 1 0
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.16 0.2 0.01
+          }
+        }
+      ]
+    }
+  ]
+  boundingObject USE body
+  physics Physics {
+  }
+  controller "wireless_cardrive"
+}
+Pedestrian {
+  translation 1.88 -1.02695e-05 1.27
+  rotation 0 0 1 3.14159
+}
